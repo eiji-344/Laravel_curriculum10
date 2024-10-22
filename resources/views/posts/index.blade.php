@@ -28,6 +28,7 @@
             {{ $posts->links() }}
         </div>
         <a href='/posts/create'>create</a>
+        <p>ログインユーザー：{{ Auth::user()->name }}</p>
         <script>
             function deletePost(id) {
                 'use strict'
