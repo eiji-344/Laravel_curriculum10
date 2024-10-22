@@ -8,6 +8,7 @@
     </head>
     <body>
         <h1>Blog Name</h1>
+        <p>ログインユーザー：{{ Auth::user()->name }}</p>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
@@ -28,7 +29,16 @@
             {{ $posts->links() }}
         </div>
         <a href='/posts/create'>create</a>
-        <p>ログインユーザー：{{ Auth::user()->name }}</p>
+        <div class='teratail'>
+            <h2>teratail質問ページ</h2>
+            @foreach($questions as $question)
+                <div>
+                    <a href="https://teratail.com/questions/{{ $question['id'] }}">
+                        {{ $question['title'] }}
+                    </a>
+                </div>
+            @endforeach
+        </div>
         <script>
             function deletePost(id) {
                 'use strict'
