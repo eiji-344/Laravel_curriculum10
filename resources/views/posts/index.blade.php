@@ -8,18 +8,20 @@
     </head>
     <body>
         <h1>Blog Name</h1>
+        <p>ログインユーザー：{{ Auth::user()->name }}</p>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
-                <h2 class='title'>
-                    <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+                    <h2 class='title'>
+                        <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+                    </h2>
+                    <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
+                    <p class='body'>{{ $post->body }}</p>
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
                     </form>
-                </h2>
-                    <p class='body'>{{ $post->body }}</p>
                 </div>
             @endforeach
         </div>
@@ -27,6 +29,16 @@
             {{ $posts->links() }}
         </div>
         <a href='/posts/create'>create</a>
+        <div class='teratail'>
+            <h2>teratail質問ページ</h2>
+            @foreach($questions as $question)
+                <div>
+                    <a href="https://teratail.com/questions/{{ $question['id'] }}">
+                        {{ $question['title'] }}
+                    </a>
+                </div>
+            @endforeach
+        </div>
         <script>
             function deletePost(id) {
                 'use strict'
