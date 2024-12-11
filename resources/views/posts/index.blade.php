@@ -9,6 +9,19 @@
     <body>
         <h1>Blog Name</h1>
         <p>ログインユーザー：{{ Auth::user()->name }}</p>
+        <div class='twitter'>
+            <h2>
+            <a href="{{ route('twitter.redirect') }}">Twitter認証</a>
+            </h2>
+            <h2>
+                Twitter投稿
+            </h2>
+            <form action="{{ route('twitter.post') }}" method="POST">
+                @csrf
+                <textarea name="text" placeholder="ツイート内容を入力"></textarea>
+                <button type="submit">投稿</button>
+            </form>
+        </div>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
