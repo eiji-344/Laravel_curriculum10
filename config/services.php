@@ -32,7 +32,11 @@ return [
     ],
 
     'teratail' => [
-    'token' => env('TERATAIL_ACCESS_TOKEN')
+        'token' => env('TERATAIL_ACCESS_TOKEN')
+    ],
+
+    'google_maps' => [
+        'api_key' => env('GOOGLE_MAPS_API_KEY'),
     ],
 
 ];
