@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TwitterController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\MapController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,7 +24,12 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/{post}/edit', 'edit')->name('edit');
 });
 
+Route::controller(MapController::class)->middleware(['auth'])->group(function(){
+    Route::get('/map', 'index')->name('index');
+});
+
 Route::get('/categories/{category}', [CategoryController::class,'index'])->middleware("auth");
+Route::get('/calendar', [EventController::class, 'show'])->name("show");
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
